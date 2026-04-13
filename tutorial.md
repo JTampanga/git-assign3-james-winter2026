@@ -1,80 +1,127 @@
-# Git Tutorial Reflection
+# What I Learned from the LinkedIn Learning Git and GitHub Course
 
-## Tutorial Completed
-
-**Learn Git Branching** – [http://pcottle.github.io/learnGitBranching/]
+**Course**: Learning Git and GitHub
+**Instructor**: Ray Villalobos
+**Platform**: LinkedIn Learning
 
 ---
 
-## What I Learned
+## Introduction
 
-### 1. The Core Git Workflow
+I completed the LinkedIn Learning course *Learning Git and GitHub* by Ray Villalobos. The course opened with an analogy that immediately made sense to me: Git is like a time machine for your project. Just like a time machine lets you travel back through history and even change it, Git lets you document and alter a project's history. That framing helped me understand the purpose of Git before touching a single command.
 
-The tutorial reinforced the fundamental Git workflow: making changes to files in a working directory, staging those changes with `git add`, and then permanently recording them with `git commit`. Each commit is like a snapshot of the project at a specific point in time, not just a list of file differences, but a complete picture of what the repository looked like at that moment.
+---
 
-### 2. Commits and the Commit Graph
+## What Git Actually Is
 
-One of the most valuable things I learned is how Git thinks about history as a **directed acyclic graph (DAG)** of commits. Each commit points back to its parent, forming a chain. This makes it possible to trace the entire history of a project.
+Before this course, I had heard of Git but did not fully understand what it did. I learned that Git is a **version control system** — a tool that tracks every change you make to your files over time. This means you can always go back to an earlier version of your work, see exactly what changed, and understand why. It is an essential skill for anyone working on code, and I can already see how useful it would be for managing data analysis projects and scripts.
 
-### 3. Branching
+---
 
-Git branches are simply **lightweight pointers** to a specific commit. Creating a new branch doesn't copy any files, it just creates a new label that moves forward as you add commits. This makes branching in Git extremely fast and cheap compared to older version control systems.
+## Setting Up Git
 
-Key commands practiced:
-```bash
-git branch feature-branch     # create a new branch
-git checkout feature-branch   # switch to it
-git checkout -b new-branch     # create and switch in one step
-```
-
-### 4. Merging
-
-After working on a feature branch, changes can be integrated back into the main branch using `git merge`. The tutorial showed how Git handles:
-- **Fast-forward merges**: when the main branch has not diverged, Git simply moves the pointer forward
-- **Three-way merges**: when both branches have new commits, Git creates a new merge commit combining both histories
-
-### 5. Rebasing
-
-`git rebase` is an alternative to merging. Instead of creating a merge commit, it **replays** your commits on top of another branch, resulting in a cleaner, linear history. This is useful for keeping a project history readable.
+The first practical thing I learned was how to configure Git with my identity. Because Git is designed for teams, every change (called a commit) needs to be linked to a person. I ran these two commands to set that up:
 
 ```bash
-git rebase main   # replay current branch commits onto main
+git config --global user.name "James Tampanga"
+git config --global user.email "jamestampanga@gmail.com.com"
 ```
 
-### 6. HEAD and Relative References
+I also learned how to turn any folder on my computer into a Git repository using:
 
-`HEAD` is a special pointer that tells Git which commit you are currently working from. The tutorial taught relative references:
-- `HEAD~1` — one commit behind HEAD
-- `HEAD^` — the parent of HEAD
-- These are extremely useful for navigating history without needing to copy SHA hashes
+```bash
+git init
+```
 
-### 7. Cherry-pick and Interactive Rebase
+This creates a hidden `.git` folder that stores all of Git's tracking data in the background.
 
-For more advanced workflows, `git cherry-pick` lets you copy specific commits onto the current branch, while `git rebase -i` (interactive rebase) lets you reorder, squash, or drop commits before sharing them.
+---
+
+## The Core Workflow: Edit, Stage, Commit
+
+The most important concept I took away was the three-stage workflow that Git uses:
+
+1. **Working Directory** — where I make changes to my files
+2. **Staging Area** — where I select which changes to include in the next save
+3. **Repository** — the permanent record of saved snapshots
+
+The staging area was new to me. I initially thought you just saved changes directly, but staging lets you be deliberate; you can change five files but only commit two of them if that is what makes logical sense.
+
+The commands I use to move through these stages are:
+
+```bash
+git add filename.md            # stage a file
+git commit -m "Add bio file"   # save it permanently with a message
+```
+
+I also learned that commit messages should be short (under 50 characters) and written in the imperative tense — "Add bio file" rather than "Added bio file." This keeps the project history clean and readable.
+
+---
+
+## Checking What Is Happening
+
+Two commands I found myself using constantly while practising:
+
+```bash
+git status         # shows what has changed and what is staged
+git log            # shows the full history of commits
+git log --oneline  # shows the same history in a compact format
+```
+
+`git log --oneline` was particularly useful — being able to see the entire history of a project summarized in a few lines makes it easy to understand what has been done and when.
+
+---
+
+## GitHub: Taking Git Online
+
+The course then introduced GitHub, which I learned is not the same thing as Git. Git is the local tool running on my computer; GitHub is a cloud platform that hosts Git repositories online. This means my work is backed up, shareable, and open to collaboration.
+
+I learned how to create a repository on GitHub and link it to my local project:
+
+```bash
+git remote add origin https://github.com/JTampanga/repo-name.git
+git branch -M main
+git push -u origin main
+```
+
+The `git push` command was the moment everything clicked — my local commits were now live on the internet, visible on my GitHub profile.
+
+---
+
+## Cloning and Branching
+
+I also learned two other important skills.
+
+**Cloning** lets me download a complete copy of any GitHub repository, including its full history:
+
+```bash
+git clone https://github.com/JTampanga/repo-name.git
+```
+
+**Branching** lets me create a separate version of a project to experiment or build a new feature without affecting the main code:
+
+```bash
+git checkout -b new-branch
+```
+
+Branches reminded me of how I manage copies of GIS data files when testing different processing approaches — Git formalizes that habit into something clean and reversible.
+
+---
+
+## Pull Requests and Collaboration
+
+The final section covered how teams use GitHub together through **pull requests**. When a developer finishes work on a branch, they open a pull request to propose merging it into the main branch. Team members can then review the changes line by line, leave comments, and either request edits or approve. Only then does the code get merged.
+
+This was the most eye-opening part of the course. I had thought of GitHub mainly as a place to store code, but it is really a structured workflow that enforces quality and accountability across an entire team.
 
 ---
 
 ## Key Takeaways
 
-- Git is not just a backup tool — it is a **collaboration and history management system**
-- Branching is cheap: use it freely for every feature or experiment
-- Commit messages matter — they are your future self's notes on what changed and why
-- Understanding `HEAD` and the commit graph makes advanced commands much less intimidating
-- The visual, interactive format of *Learn Git Branching* made abstract concepts like DAGs and rebasing much easier to grasp than reading documentation alone
+- Git is not just a backup tool — it is a complete history of every decision made on a project
+- The staging area gives me control over exactly what goes into each commit
+- Commit messages are communication, not just labels — they should be clear and meaningful
+- GitHub turns a local Git project into a collaborative, cloud-hosted platform
+- Pull requests are how professional teams review and approve code before it goes live
 
----
-
-## Commands Reference Summary
-
-| Command | Purpose |
-|---------|---------|
-| `git init` | Initialize a new local repository |
-| `git add <file>` | Stage changes for commit |
-| `git commit -m "message"` | Record staged changes |
-| `git branch <name>` | Create a new branch |
-| `git checkout <branch>` | Switch branches |
-| `git merge <branch>` | Merge branch into current |
-| `git rebase <branch>` | Rebase current branch onto another |
-| `git log` | View commit history |
-| `git log --oneline` | Compact commit history view |
-| `git push origin main` | Push local commits to remote |
+Overall, this course gave me a solid foundation in Git that I feel confident building on. The time machine analogy stayed with me throughout — every `git commit` is a point in time I can always return to.
