@@ -27,6 +27,6 @@ Institution: Saskatchewan Polytechnic
 
 ## Course
 
-gi- **Course**: Programming for Data Science
+- **Course**: Programming for Data Science
 - **Instructor**: Abu Muktadir
 - **Semester**: Winter 2026
