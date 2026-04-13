@@ -2,7 +2,7 @@
 
 ## Project Description
 
-This repository was created as part of Assignment 3 for the Postgraduate Certificate in AI and Data Analytics at Saskatchewan Polytechnic.
+This repository was created as part of **Assignment 3** for the Programming for Data Science course.
 
 The purpose of this assignment is to:
 - Set up Git and GitHub for version control
@@ -14,19 +14,19 @@ The purpose of this assignment is to:
 
 | File | Description |
 |------|-------------|
-| README.md | Project overview and description |
-| bio.md | Short professional biography / resume |
-| tutorial.md | Reflection on Git tutorial completed during the assignment |
+| `README.md` | Project overview and description |
+| `bio.md` | Short professional biography / resume |
+| `tutorial.md` | Reflection on Git tutorial completed during the assignment |
 
 ## Author
 
-**James Tampanga**
-GitHub: JTampanga
-Program: Postgraduate Certificate - AI and Data Analytics
-Institution: Saskatchewan Polytechnic
+**James Tampanga**  
+GitHub: [JTampanga](https://github.com/JTampanga)  
+Program: Postgraduate Certificate – AI and Data Analytics  
+Institution: Saskatchewan Polytechnic  
 
 ## Course
 
-- Course: AI and Data Analytics
-- Instructor: Lee McPherson
-- Semester: Fall 2026
+gi- **Course**: Programming for Data Science
+- **Instructor**: Abu Muktadir
+- **Semester**: Winter 2026
